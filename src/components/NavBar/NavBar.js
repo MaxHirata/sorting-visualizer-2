@@ -60,12 +60,6 @@ class NavBar extends Component {
 
 };
 
-const mapStateToProps = state => {
-    return {
-        msg: state.msg
-    };
-}
-
 const mapDispatchToProps = dispatch => {
     return {
         generateRandomArray: () => dispatch(generateRandomArray()),

@@ -1,7 +1,6 @@
 const initialState = {
     selectedAlgorithm: null,
-    array: ['test'],
-    msg: "TESTTEST MSG"
+    array: []
 };
 
 export default function(state = initialState, action) {

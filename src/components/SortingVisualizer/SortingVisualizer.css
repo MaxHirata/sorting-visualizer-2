@@ -1,0 +1,9 @@
+.array-container {
+	position: relative;
+}
+
+.array-bar {
+	width: 7px;
+	display: inline-block;
+	margin: 0 1px;
+}

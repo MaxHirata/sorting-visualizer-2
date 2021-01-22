@@ -1,19 +1,30 @@
 import React, {Component, Fragment} from 'react';
 import './SortingVisualizer.css';
 import { connect } from 'react-redux';
+import { generateRandomArray } from '../../store/actions/actions';
 
 const PrimaryColor = '#00ffcc';
 
 class SortingVisualizer extends Component {
+    componentDidMount() {
+        this.props.generatedArray();
+    }
 
     render() {
         return (
             <Fragment>
                 <div className='array-container'>
-                    Array Visualizer Container
-                </div>
-                <div>
-                    {this.props.animationArray}
+                    {this.props.animationArray.map((value, index) => (
+                        <div
+                            className="array-bar"
+                            key={index}
+                            style={{
+                                background: PrimaryColor,
+                                height: `${value}px`
+                            }}
+                        >
+                        </div>
+                    ))}
                 </div>
             </Fragment>
         );
@@ -28,9 +39,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getBubbleSort: () => dispatch({type: 'SET_BUBBLESORT', payload: { msg: 'bubblesort'}})
-    };
+        generatedArray: () => dispatch(generateRandomArray())
+    }
 }
 
-export default connect(mapStateToProps)(SortingVisualizer);
-//export default connect(mapStateToProps, mapDispatchToProps)(SortingVisualizer);
+export default connect(mapStateToProps, mapDispatchToProps)(SortingVisualizer);
