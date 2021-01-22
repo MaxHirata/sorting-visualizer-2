@@ -23,4 +23,14 @@ export const generateRandomArray = () => dispatch => {
     });
 }
 
+export const sortArray = (selectedAlgorithm) => dispatch => {
+    console.log(selectedAlgorithm);
+    dispatch({
+        type: 'SORT_ARRAY',
+        payload: {
+            selectedAlgorithm: null
+        }
+    });
+}
+
 

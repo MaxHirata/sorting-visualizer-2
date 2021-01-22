@@ -16,6 +16,11 @@ export default function(state = initialState, action) {
                 ...state, 
                 selectedAlgorithm: action.payload
             };
+        case 'SORT_ARRAY':
+            return {
+                ...state,
+                selectedAlgorithm: action.payload.selectedAlgorithm
+            }
         default:
             return state;
     }

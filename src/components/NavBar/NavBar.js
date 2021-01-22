@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Label, Menu, Button, Segment, Header, Icon} from 'semantic-ui-react';
 import './NavBar.css';
 import { connect } from 'react-redux';
-import {setSelectedAlgorithm, generateRandomArray} from './../../store/actions/actions';
+import {setSelectedAlgorithm, generateRandomArray, sortArray} from './../../store/actions/actions';
 
 class NavBar extends Component {
 
@@ -50,8 +50,13 @@ class NavBar extends Component {
                         active=''>
                         BubbleSort
                     </Menu.Item>
-                    <Menu.Item>
-                        <Button onClick={() => {}} color='red'>SORT!</Button>
+                    <Menu.Item
+                        name='trigger_sort_array'>
+                        <Button 
+                            onClick={() => this.props.sortArray(this.props.selectedAlgorithm)} 
+                            color='red'>
+                                SORT!
+                        </Button>
                     </Menu.Item>
                 </Menu>
             </Fragment>
@@ -60,11 +65,18 @@ class NavBar extends Component {
 
 };
 
+const mapStateToProps = state => {
+    return {
+        selectedAlgorithm: state.selectedAlgorithm
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         generateRandomArray: () => dispatch(generateRandomArray()),
-        setSelectedAlgorithm: (algorithm) => dispatch(setSelectedAlgorithm(algorithm))
+        setSelectedAlgorithm: (algorithm) => dispatch(setSelectedAlgorithm(algorithm)),
+        sortArray: (selectedAlgorithm) => dispatch(sortArray(selectedAlgorithm))
     };
 }
 
-export default connect(null, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
