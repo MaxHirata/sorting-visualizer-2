@@ -1,4 +1,8 @@
 import {randomIntFromIntervals} from '../../Util/Utility';
+import bubbleSort from '../../SortingAlgorithm/BubbleSort';
+import mergeSort from '../../SortingAlgorithm/MergeSort';
+import heapSort from '../../SortingAlgorithm/HeapSort';
+import quickSort from '../../SortingAlgorithm/QuickSort';
 
 export const setSelectedAlgorithm = (algorithm) => dispatch => {
     console.log("Set Algorithm");
@@ -23,8 +27,26 @@ export const generateRandomArray = () => dispatch => {
     });
 }
 
-export const sortArray = (selectedAlgorithm) => dispatch => {
-    console.log(selectedAlgorithm);
+export const sortArray = (selectedAlgorithm, unsortedArray) => dispatch => {
+    const animationSequence = [];
+
+    switch(selectedAlgorithm) {
+        case 'bubblesort':
+            console.log("SELECTED BUBBLESORT");
+            break;
+        case 'mergesort':
+            console.log("SELECTED MERGESORT");
+            break;
+        case 'quicksort':
+            console.log("SELECTED QUICKSORT");
+            break;
+        case 'heapsort':
+            console.log("SELECTED HEAPSORT");
+            break;
+        default:
+            break;
+    }
+
     dispatch({
         type: 'SORT_ARRAY',
         payload: {

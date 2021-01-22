@@ -27,33 +27,37 @@ class NavBar extends Component {
                     </Menu.Item>
                     <Menu.Item
                         name='mergesort'
-                        onClick={() => this.props.setSelectedAlgorithm('bubblesort')}
-                        active=''
+                        onClick={() => this.props.setSelectedAlgorithm('mergesort')}
+                        active={this.props.selectedAlgorithm === 'mergesort'}
                     >
                         Mergesort
+                        {this.props.selectedAlgorithm === 'mergesort' ? <Label color="red" content="Selected" /> : null}
                     </Menu.Item>
                     <Menu.Item
                         name="quicksort"
                         onClick={() => this.props.setSelectedAlgorithm('quicksort')}
-                        active=''>
+                        active={this.props.selectedAlgorithm === 'quicksort'}>
                         Quicksort
+                        {this.props.selectedAlgorithm === 'quicksort' ? <Label color="red" content="Selected" /> : null}
                     </Menu.Item>
                     <Menu.Item
                         name="heapsort"
                         onClick={() => this.props.setSelectedAlgorithm('heapsort')}
-                        active=''>
+                        active={this.props.selectedAlgorithm === 'heapsort'}>
                         Heapsort
+                        {this.props.selectedAlgorithm === 'heapsort' ? <Label color="red" content="Selected" /> : null}
                     </Menu.Item>
                     <Menu.Item
                         name='bubblesort'
                         onClick={() => this.props.setSelectedAlgorithm('bubblesort')}
-                        active=''>
+                        active={this.props.selectedAlgorithm === 'bubblesort'}>
                         BubbleSort
+                        {this.props.selectedAlgorithm === 'bubblesort' ? <Label color="red" content="Selected" /> : null}
                     </Menu.Item>
                     <Menu.Item
                         name='trigger_sort_array'>
                         <Button 
-                            onClick={() => this.props.sortArray(this.props.selectedAlgorithm)} 
+                            onClick={() => this.props.sortArray(this.props.selectedAlgorithm, this.props.unsortedArray)} 
                             color='red'>
                                 SORT!
                         </Button>
@@ -67,7 +71,8 @@ class NavBar extends Component {
 
 const mapStateToProps = state => {
     return {
-        selectedAlgorithm: state.selectedAlgorithm
+        selectedAlgorithm: state.selectedAlgorithm,
+        unsortedArray: state.array
     }
 }
 
@@ -75,7 +80,7 @@ const mapDispatchToProps = dispatch => {
     return {
         generateRandomArray: () => dispatch(generateRandomArray()),
         setSelectedAlgorithm: (algorithm) => dispatch(setSelectedAlgorithm(algorithm)),
-        sortArray: (selectedAlgorithm) => dispatch(sortArray(selectedAlgorithm))
+        sortArray: (selectedAlgorithm, unsortedArray) => dispatch(sortArray(selectedAlgorithm, unsortedArray))
     };
 }
 
