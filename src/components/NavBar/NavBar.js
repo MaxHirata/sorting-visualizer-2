@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import {setSelectedAlgorithm, generateRandomArray, sortArray} from './../../store/actions/actions';
 
 class NavBar extends Component {
-
     render() {
         return (
             <Fragment>
