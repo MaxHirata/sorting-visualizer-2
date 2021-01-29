@@ -11,7 +11,7 @@ const PRIMARY_COLOR = '#00ffcc';
 const SECONDARY_COLOR = 'red';
 const ANIMATION_SPEED_MS = 5;
 
-export const setSelectedAlgorithm = (algorithm: string): AppActions => ({
+export const setSelectedAlgorithm = (algorithm: string | null): AppActions => ({
         type: 'SET_ALGORITHM',
         algorithm
 });
@@ -39,7 +39,7 @@ export const startGenerateRandomArray = () => {
     }
 }
 
-export const startSortArray = (selectedAlgorithm: string, unsortedArray: number[]) => {
+export const startSortArray = (selectedAlgorithm: string | null, unsortedArray: number[]) => {
     return(dispatch: Dispatch<AppActions>, getState: () => AppState) => {
         let animationSequence: any[] = [];
 

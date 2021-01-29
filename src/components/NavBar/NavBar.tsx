@@ -83,14 +83,14 @@ class NavBar extends Component<Props, NavState> {
 }
 
 interface LinkStateProp {
-    selectedAlgorithm: string,
+    selectedAlgorithm: string | null,
     unsortedArray: number[]
 }
 
 interface LinkDispatchProp {
     generateRandomArray: () => void,
-    setSelectedAlgorithm: (algorithm: string) => void,
-    sortArray: (selectedAlgorithm: string, unsortedArray: number[]) => void
+    setSelectedAlgorithm: (algorithm: string | null) => void,
+    sortArray: (selectedAlgorithm: string | null, unsortedArray: number[]) => void
 }
 
 const mapStateToProps = (state: AppState, ownProps: NavProps) => ({
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>, ownPr
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar as any);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

@@ -4,7 +4,7 @@ export const SORT_ARRAY = "SORT_ARRAY";
 
 export interface SetAlgorithm {
     type: typeof SET_ALGORITHM,
-    algorithm: string
+    algorithm: string | null
 }
 
 export interface GenerateRandomArray {
