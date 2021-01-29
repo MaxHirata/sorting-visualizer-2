@@ -2,9 +2,24 @@ import React, {Component, Fragment} from 'react';
 import {Label, Menu, Button, Segment, Header, Icon} from 'semantic-ui-react';
 import './NavBar.css';
 import { connect } from 'react-redux';
-import {setSelectedAlgorithm, generateRandomArray, sortArray} from './../../store/actions/actions';
+import {setSelectedAlgorithm ,startGenerateRandomArray, startSortArray} from '../../store/actions/actions';
+import { AppState } from '../../store/store';
+import { ThunkDispatch } from 'redux-thunk';
+import { AppActions } from '../../store/actions/actionTypes';
+import { bindActionCreators } from 'redux';
 
-class NavBar extends Component {
+interface NavProps {
+    // None
+};
+
+interface NavState {
+    // None
+}
+
+// Aggregate ALL the interface of all props
+type Props = NavProps & LinkStateProp & LinkDispatchProp;
+
+class NavBar extends Component<Props, NavState> {
     render() {
         return (
             <Fragment>
@@ -27,7 +42,7 @@ class NavBar extends Component {
                     <Menu.Item
                         name='mergesort'
                         onClick={() => this.props.setSelectedAlgorithm('mergesort')}
-                        active={this.props.selectedAlgorithm === 'mergesort'}
+                        active={ (this.props.selectedAlgorithm ) === 'mergesort'}
                     >
                         Mergesort
                         {this.props.selectedAlgorithm === 'mergesort' ? <Label color="red" content="Selected" /> : null}
@@ -65,22 +80,29 @@ class NavBar extends Component {
             </Fragment>
         );
     }
-
-};
-
-const mapStateToProps = state => {
-    return {
-        selectedAlgorithm: state.selectedAlgorithm,
-        unsortedArray: state.array
-    }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        generateRandomArray: () => dispatch(generateRandomArray()),
-        setSelectedAlgorithm: (algorithm) => dispatch(setSelectedAlgorithm(algorithm)),
-        sortArray: (selectedAlgorithm, unsortedArray) => dispatch(sortArray(selectedAlgorithm, unsortedArray))
-    };
+interface LinkStateProp {
+    selectedAlgorithm: string,
+    unsortedArray: number[]
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+interface LinkDispatchProp {
+    generateRandomArray: () => void,
+    setSelectedAlgorithm: (algorithm: string) => void,
+    sortArray: (selectedAlgorithm: string, unsortedArray: number[]) => void
+}
+
+const mapStateToProps = (state: AppState, ownProps: NavProps) => ({
+    selectedAlgorithm: state.userActions.selectedAlgorithm,
+    unsortedArray: state.userActions.array
+});
+
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AppActions>, ownProps: NavProps) => ({
+    generateRandomArray: bindActionCreators(startGenerateRandomArray, dispatch),
+    setSelectedAlgorithm: bindActionCreators(setSelectedAlgorithm, dispatch),
+    sortArray: bindActionCreators(startSortArray, dispatch)
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar as any);

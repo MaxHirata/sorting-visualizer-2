@@ -1,25 +1,27 @@
-const initialState = {
+import { UserActionTypes } from "../actions/actionTypes";
+import { SortingAlgorithm } from "../actions/types";
+
+const initialState: SortingAlgorithm = {
     selectedAlgorithm: null,
     array: []
 };
 
-export default function(state = initialState, action) {
+export default function(state = initialState, action: UserActionTypes): SortingAlgorithm {
     switch (action.type) {
         case 'GENERATE_RANDOM_ARRAY':
             return {
                 ...state, 
-                array: action.payload.array, 
-                selectedAlgorithm: action.payload.selectedAlgorithm
+                array: action.array
             };
         case 'SET_ALGORITHM':
             return {
                 ...state, 
-                selectedAlgorithm: action.payload
+                selectedAlgorithm: action.algorithm
             };
         case 'SORT_ARRAY':
             return {
                 ...state,
-                selectedAlgorithm: action.payload.selectedAlgorithm
+                selectedAlgorithm: action.algorithm
             }
         default:
             return state;

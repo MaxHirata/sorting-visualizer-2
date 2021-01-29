@@ -1,12 +1,12 @@
-export default function bubblesort(array) {
-    const animation = [];
+export default function bubblesort(array: number[]) {
+    const animation: any[] = [];
     if(array.length <= 1) return array;
     _bubblesort(array, animation);
 
     return animation;
 }
 
-function _bubblesort(array, animation) {
+function _bubblesort(array: number[], animation: any[]) {
     let swapped = true;
     while (swapped) {
         swapped = false;
