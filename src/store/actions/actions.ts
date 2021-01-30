@@ -50,6 +50,7 @@ export const startSortArray = (selectedAlgorithm: string | null, unsortedArray: 
                 break;
             case 'mergesort':
                 console.log("SELECTED MERGESORT");
+                animationSequence = mergeSort(unsortedArray);
                 break;
             case 'quicksort':
                 console.log("SELECTED QUICKSORT");
