@@ -58,6 +58,7 @@ export const startSortArray = (selectedAlgorithm: string | null, unsortedArray: 
                 break;
             case 'heapsort':
                 console.log("SELECTED HEAPSORT");
+                animationSequence = heapSort(unsortedArray);
                 break;
             default:
                 break;
