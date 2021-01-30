@@ -54,6 +54,7 @@ export const startSortArray = (selectedAlgorithm: string | null, unsortedArray: 
                 break;
             case 'quicksort':
                 console.log("SELECTED QUICKSORT");
+                animationSequence = quickSort(unsortedArray);
                 break;
             case 'heapsort':
                 console.log("SELECTED HEAPSORT");
